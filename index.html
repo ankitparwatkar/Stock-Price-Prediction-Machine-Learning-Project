@@ -1,0 +1,76 @@
+<html>
+
+<head>
+
+<title>PRS</title>
+
+<style>
+
+body{
+background-image: url("../static/116316-abstract-cyan-defocused-background-design.jpg");
+Background-size: cover;
+}
+
+form{
+text-align: center
+}
+
+input{
+width: 25%
+}
+
+input[type=submit]{
+	background-color: green;
+	color: white;
+	width: 10%
+}
+
+label {
+	font-size: 20px;
+	display: inline_block;
+	width: 150px;
+	text-align: right;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<center><h1>Iris Classification</h1></center>
+
+<form action='/predict' method="post">
+
+<label for = "Prev_Close">Prev_Close</label>
+<input type = 'number', name = 'Prev_Close', required = 'required'>
+
+<br></br>
+
+<label for = "Open">Open</label>
+<input type = 'number', name = 'Open', required = 'required'>
+
+<br></br>
+
+<label for = "High">High</label>
+<input type = 'number', name = 'High', required = 'required'>
+
+<br></br>
+
+<label for = "Low">Low</label>
+<input type = 'number', name = 'Low', required = 'required'>
+
+<br></br>
+
+<label for = "Last">Last</label>
+<input type = 'number', name = 'Last', required = 'required'>
+
+
+<label></label>
+<input id = "submit" type = "submit" value = "Give Recommendations" ></input>
+
+</form>
+<center><h3>{{result}}</h3></center>
+</body>
+
+</html>
