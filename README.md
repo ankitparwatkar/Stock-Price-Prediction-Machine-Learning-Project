@@ -1,3 +1,3 @@
 Our project leverages machine learning models to predict the closing stock prices of Adani Ports. Using historical trading data, we train a Support Vector Regression (SVR) model to forecast future prices accurately. This predictive analytics tool aids investors in making informed decisions based on data-driven insights. 🚀📈 |
 Stock Price Prediction on Adani Ports Ltd. by Ankit Parwatkar 
-# Stock-Price-Prediction-Project
+# Stock-Price-Prediction-Machine-Learning-Project
