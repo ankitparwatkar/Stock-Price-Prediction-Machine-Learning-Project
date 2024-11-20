@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 from flask import  Flask,render_template,request
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, static_url_path='116316-abstract-cyan-defocused-background-design.jpg')
 df=pd.read_csv("ADANIPORTS.csv")
 df.head(1)
 x=df.iloc[:,3:8].values
