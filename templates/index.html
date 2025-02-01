@@ -1,0 +1,77 @@
+<html>
+
+<head>
+
+<title>CSP</title>
+
+<style>
+
+body{
+background-image: url("../static/116316-abstract-cyan-defocused-background-design.jpg");
+Background-size: cover;
+}
+
+form{
+text-align: center
+}
+
+input{
+width: 25%
+}
+
+input[type=submit]{
+	background-color: green;
+	color: white;
+	width: 10%
+}
+
+label {
+	font-size: 20px;
+	display: inline_block;
+	width: 150px;
+	text-align: right;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<center><h1>Credit Score</h1></center>
+
+<form action='/predict' method="post">
+
+<label for = "Gender">Gender</label>
+<input type = 'number', name = 'Gender', required = 'required'>
+
+<br></br>
+
+<label for = "Education">Education</label>
+<input type = 'number', name = 'Education', required = 'required'>
+
+<br></br>
+
+<label for = "ApplicantIncome">ApplicantIncome</label>
+<input type = 'number', name = 'ApplicantIncome', required = 'required'>
+
+<br></br>
+
+<label for = "Credit_History">Credit_History</label>
+<input type = 'number', name = 'Credit_History', required = 'required'>
+
+<br></br>
+
+<label for = "Property_Area">Property_Area</label>
+<input type = 'number', name = 'Property_Area', required = 'required'>
+
+<br><br>
+
+<label></label>
+<input id = "submit" type = "submit" value = "Give Recommendations" ></input>
+
+</form>
+<center><h3>{{result}}</h3></center>
+</body>
+
+</html>
