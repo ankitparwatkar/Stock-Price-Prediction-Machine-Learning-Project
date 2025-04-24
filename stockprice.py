@@ -1,42 +1,44 @@
+import streamlit as st
 import numpy as np
 import pandas as pd
 import pickle
-from flask import  Flask,render_template,request
-app = Flask(__name__, static_url_path='116316-abstract-cyan-defocused-background-design.jpg')
-df=pd.read_csv("ADANIPORTS.csv")
-df.head(1)
-x=df.iloc[:,3:8].values
-y=df.iloc[:,8].values
-from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
-from sklearn.svm import SVR
-model = SVR(kernel='poly',degree=2,C=2)
-model.fit(x_train, y_train)
-with open ('stock.pkl','wb') as file:
-    pickle.dump(model,file)
-y_pred = model.predict(x_test)
-from sklearn.metrics import mean_absolute_error,mean_squared_error
-MAE = mean_absolute_error(y_test,y_pred)
-print(MAE)
-MSE = mean_squared_error(y_test,y_pred)
-print(MSE)
-RMSE = np.sqrt(MSE)
-print(RMSE)
-with open ('stock.pkl','rb') as file:
-    model1 = pickle.load(file)
-model1.predict([[440,770,1050,770,959]])
-@app.route('/')
-def Home():
-    return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
-def predict():
-     Prev_Close=float(request.form['Prev_Close'])
-     Open = float(request.form['Open'])
-     High = float(request.form['High'])
-     Low = float(request.form['Low'])
-     Last = float(request.form['Last'])
-     result= model.predict([[Prev_Close,Open,High,Low,Last]])[0]
-     return render_template('index.html',result="{}".format(result))
-if __name__=="__main__":
-    app.run(debug=True)
+# Load the trained model
+with open('stock.pkl', 'rb') as file:
+    model = pickle.load(file)
+
+# App title with styling
+st.set_page_config(page_title="Stock Price Predictions", page_icon="📈", layout="wide")
+st.markdown(
+    """
+    <h1 style='text-align: center; color: green;'>📈 Stock Price Predictions 📊</h1>
+    <h3 style='text-align: center;'>Unlock future stock trends with AI-powered predictions! 🚀</h3>
+    """,
+    unsafe_allow_html=True
+)
+
+# Sidebar for navigation
+st.sidebar.image("116316-abstract-cyan-defocused-background-design.jpg", use_column_width=True)
+st.sidebar.header("Prediction Inputs")
+
+# Input fields with styling
+st.sidebar.subheader("Enter Stock Metrics:")
+Prev_Close = st.sidebar.number_input("Previous Close Price", min_value=0.0, format="%.2f")
+Open = st.sidebar.number_input("Open Price", min_value=0.0, format="%.2f")
+High = st.sidebar.number_input("High Price", min_value=0.0, format="%.2f")
+Low = st.sidebar.number_input("Low Price", min_value=0.0, format="%.2f")
+Last = st.sidebar.number_input("Last Price", min_value=0.0, format="%.2f")
+
+# Prediction button
+if st.sidebar.button("🔮 Predict Future Price"):
+    result = model.predict([[Prev_Close, Open, High, Low, Last]])[0]
+    st.success(f"📌 **Predicted Price: ₹{result:.2f}**")
+    
+# Footer
+st.markdown(
+    """
+    <hr>
+    <h5 style='text-align: center; color: gray;'>Made with ❤️ using Streamlit & ML</h5>
+    """,
+    unsafe_allow_html=True
+)
