@@ -2,5 +2,7 @@ numpy
 pandas
 scikit-learn
 pickle
-pip
-non-zero
+matplotlib
+seaborn
+tensorflow
+keras
